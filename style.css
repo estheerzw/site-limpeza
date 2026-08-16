@@ -1,0 +1,218 @@
+        /* =========================================
+           VARIÁVEIS (Cores extraídas do Figma)
+           ========================================= */
+        :root {
+            --color-primary: #1a365d;    /* Azul escuro (Títulos e botão Book) */
+            --color-accent: #4a90e2;     /* Azul claro (Botão Quote) */
+            --color-text: #334155;       /* Cinza escuro (Parágrafos e Menu) */
+            --color-bg-light: #f1f6fc;   /* Fundo azul bem clarinho da Trust Bar */
+            --color-bg-site: #f8fafc;    /* Fundo geral do site */
+        }
+
+        /* =========================================
+           RESET BÁSICO
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Nossa fonte principal */
+            background-color: var(--color-bg-site);
+            color: var(--color-text);
+        }
+
+        a {
+            text-decoration: none; /* Tira o sublinhado azul padrão dos links */
+        }
+
+        /* =========================================
+           CONTAINER (O segredo do alinhamento)
+           ========================================= */
+        /* Isso impede o site de esticar infinitamente em telas grandes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto; /* Centraliza a div na tela */
+            padding: 0 20px; /* Dá uma margem de segurança nas laterais */
+        }
+
+        /* =========================================
+           BOTÕES (Estrutura Modular)
+           ========================================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 8px; /* Bordas arredondadas do Figma */
+            font-weight: 700;
+            font-size: 16px;
+            transition: opacity 0.3s ease; /* Efeito suave ao passar o mouse */
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: #ffffff;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            padding: 18px 32px; /* Botão do Hero é um pouco maior no design */
+            font-size: 18px;
+        }
+
+        /* =========================================
+           HEADER (Usando Flexbox)
+           ========================================= */
+        .site-header {
+            background-color: #ffffff;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave */
+            padding: 15px 0;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between; /* Afasta Logo <-> Menu <-> Botão */
+            align-items: center; /* Centraliza verticalmente */
+        }
+
+        .logo-img {
+            height: 90px; /* Altura do logo do Figma */
+            width: auto;
+        }
+
+        .main-nav {
+            margin-left: auto; /* Empurra o menu para a direita */
+            margin-right: 40px; /* Dá o respiro entre o menu e o botão */
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 40px; /* Espaço entre os links */
+            list-style: none; /* Tira as "bolinhas" da lista */
+        }
+
+        .nav-link {
+            color: var(--color-text);
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-accent); /* Fica azul claro no hover */
+        }
+
+        /* =========================================
+           HERO SECTION (Usando CSS Grid)
+           ========================================= */
+        .hero {
+            padding: 80px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas de tamanhos iguais! */
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 64px;
+            font-weight: 900;
+            color: var(--color-primary);
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: var(--color-text);
+            line-height: 1.5;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            max-width: 480px; /* Limita a largura para o texto não ficar tão longo na linha */
+        }
+
+        .hero-img {
+            width: 100%; /* Faz a imagem ocupar 100% da coluna dela no grid */
+            height: auto;
+            border-radius: 24px; /* Arredondamento grandão do Figma */
+            display: block;
+        }
+
+        /* =========================================
+           TRUST BAR (Usando Flexbox)
+           ========================================= */
+        .trust-bar {
+            padding-bottom: 80px;
+        }
+
+        .trust-bar-container {
+            background-color: var(--color-bg-light);
+            border-radius: 8px;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between; /* Espalha os 3 itens */
+            align-items: center;
+        }
+
+        .trust-list {
+            display: contents; /* Um truque semântico para a ul não quebrar o flexbox da div pai */
+            list-style: none;
+        }
+
+        .trust-item {
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE (Tablets e Celulares)
+           ========================================= */
+        @media (max-width: 768px) {
+            
+            /* 1. HEADER: Empilha o conteúdo para não espremer */
+            .header-container {
+                flex-direction: column; /* Muda a direção do Flexbox para coluna */
+                height: auto;
+                gap: 20px;
+                padding: 20px 0;
+            }
+            
+            .nav-list {
+                flex-wrap: wrap; /* Se os links não couberem, quebram para a linha de baixo */
+                justify-content: center;
+                gap: 20px;
+            }
+
+            /* 2. HERO: Muda de 2 colunas para 1 coluna */
+            .hero {
+                padding: 40px 0; /* Diminui o respiro no celular */
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr; /* Aqui está a mágica: 1 única coluna! */
+                text-align: center; /* Centraliza o texto para ficar melhor no celular */
+                gap: 40px;
+            }
+
+            /* Centraliza a descrição para não ficar torta com o text-align: center */
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* 3. TRUST BAR: Empilha os itens de confiança */
+            .trust-bar-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
